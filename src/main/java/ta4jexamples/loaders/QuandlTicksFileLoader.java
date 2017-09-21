@@ -63,6 +63,7 @@ public class QuandlTicksFileLoader {
         String[] line;
         while ((line = csvReader.readNext()) != null) {
           DateTime date = new DateTime(DATE_FORMATTER.parseDateTime(line[1]));
+          if (date.isBefore(startDate) || date.isAfter(endDate)) continue;
           double open = Double.parseDouble(line[2]);
           double high = Double.parseDouble(line[3]);
           double low = Double.parseDouble(line[4]);
